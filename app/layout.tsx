@@ -1,13 +1,13 @@
-import { Metadata } from 'next'
-import './globals.css'
-import { Inter } from 'next/font/google'
+import { Metadata } from 'next';
+import './globals.css';
+import { Inter } from 'next/font/google';
 
-const inter = Inter({ subsets: ['latin'] })
+const inter = Inter({ subsets: ['latin'] });
 
 export const metadata: Metadata = {
   title: {
     default: 'damlakoksal.com',
-    template: '%s | damlakoksal.com'
+    template: '%s | damlakoksal.com',
   },
   description: 'Software engineer at chainapi.com',
   openGraph: {
@@ -16,7 +16,7 @@ export const metadata: Metadata = {
     url: 'https://chronark.com',
     siteName: 'damlakoksal.com',
     locale: 'en-US',
-    type: 'website'
+    type: 'website',
   },
   robots: {
     index: true,
@@ -26,26 +26,26 @@ export const metadata: Metadata = {
       follow: true,
       'max-video-preview': -1,
       'max-image-preview': 'large',
-      'max-snippet': -1
-    }
+      'max-snippet': -1,
+    },
   },
   twitter: {
     title: 'damlakoksal',
-    card: 'summary_large_image'
+    card: 'summary_large_image',
   },
   icons: {
-    shortcut: '/favicon.png'
-  }
-}
+    shortcut: '/favicon.png',
+  },
+};
 
 export default function RootLayout({
-  children
+  children,
 }: {
-  children: React.ReactNode
+  children: React.ReactNode;
 }) {
   return (
-    <html lang='en'>
+    <html lang="en">
       <body className={inter.className}>{children}</body>
     </html>
-  )
+  );
 }
