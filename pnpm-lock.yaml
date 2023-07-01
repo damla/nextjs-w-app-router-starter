@@ -8,6 +8,7 @@ specifiers:
   eslint: 8.44.0
   eslint-config-next: 13.4.7
   eslint-config-prettier: ^8.8.0
+  husky: ^8.0.3
   lint-staged: ^13.2.3
   next: 13.4.7
   postcss: 8.4.24
@@ -32,6 +33,7 @@ dependencies:
 
 devDependencies:
   eslint-config-prettier: 8.8.0_eslint@8.44.0
+  husky: 8.0.3
   lint-staged: 13.2.3
 
 packages:
@@ -1470,6 +1472,12 @@ packages:
   /human-signals/4.3.1:
     resolution: {integrity: sha512-nZXjEF2nbo7lIw3mgYjItAfgQXog3OjJogSbKa2CQIIvSGWcKgeJnQlNXip6NglNzYH45nSRiEVimMvYL8DDqQ==}
     engines: {node: '>=14.18.0'}
+
+  /husky/8.0.3:
+    resolution: {integrity: sha512-+dQSyqPh4x1hlO1swXBiNb2HzTDN1I2IGLQx1GrBuiqFJfoMrnZWwVmatvSiO+Iz8fBUnf+lekwNo4c2LlXItg==}
+    engines: {node: '>=14'}
+    hasBin: true
+    dev: true
 
   /ignore/5.2.4:
     resolution: {integrity: sha512-MAb38BcSbH0eHNBxn7ql2NH/kX33OkB3lZ1BNdh7ENeRChHTYsTvWrMubiIAMNS2llXEEgZ1MUOBtXChP3kaFQ==}
