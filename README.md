@@ -20,14 +20,16 @@
 
 ## Getting Started
 
+⚠️ For this project, the default package manager utilized is `pnpm`. If you would like to use a different one, you can modify the `.lintstagedrc.js` and `husky` files accordingly.
+
 First, run the development server:
 
 ```bash
-npm run dev
+pnpm dev
 # or
 yarn dev
 # or
-pnpm dev
+npm run dev
 ```
 
 Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
