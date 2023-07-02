@@ -10,7 +10,7 @@
 
 ✔ Would you like to use Tailwind CSS with this project? … No / **Yes**
 
-✔ Would you like to use `src/` directory with this project? … **No** / Yes
+✔ Would you like to use `src/` directory with this project? … No / **Yes**
 
 ✔ Use App Router (recommended)? … No / **Yes**
 
