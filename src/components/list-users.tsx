@@ -1,6 +1,5 @@
 import { User } from '@prisma/client';
 import Image from 'next/image';
-import React, { use } from 'react';
 
 async function getUsers() {
   const res = await fetch('http://localhost:3000/api/users');
