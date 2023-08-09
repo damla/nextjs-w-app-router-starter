@@ -8,6 +8,7 @@ import { url } from '../utils/env';
 
 const getUsers = cache(() => fetch(`${url}/api/users`).then(res => res.json()));
 
+
 export default function ListUsers() {
   const { data: session } = useSession({
     required: true,

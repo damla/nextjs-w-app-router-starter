@@ -19,11 +19,13 @@ export const authOptions: NextAuthOptions = {
         if (!credentials || !credentials.email || !credentials.password) {
           return null;
         }
-
         const users = await prisma.user.findMany();
         const user = users.find(u => u.email === credentials.email);
 
-        if (user && !!bcrypt.compare(credentials.password, user.password)) {
+        if (
+          user &&
+          (await bcrypt.compare(credentials.password, user.password))
+        ) {
           return user;
         }
         return null;
