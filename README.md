@@ -1,5 +1,9 @@
 # NextJS Application Using App Router
 
+## ⚠️ In Progress!
+
+- If you want to follow up on the updates and contribute, please check the [project board.](https://github.com/users/damla/projects/7/views/2)
+
 ## Installation Settings
 
 ✔ What is your project named? … nextjs-w-app-directory-starter
