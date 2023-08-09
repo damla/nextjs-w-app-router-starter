@@ -4,13 +4,10 @@ import { User } from '@prisma/client';
 import React, { cache, use } from 'react';
 import { useSession } from 'next-auth/react';
 import { redirect } from 'next/navigation';
+import { url } from '../utils/env';
 
-const getUsers = cache(() =>
-  // TODO: refactor
-  fetch('https://nextjs-w-app-directory-starter.vercel.app/api/users').then(
-    res => res.json()
-  )
-);
+const getUsers = cache(() => fetch(`${url}/api/users`).then(res => res.json()));
+
 
 export default function ListUsers() {
   const { data: session } = useSession({
