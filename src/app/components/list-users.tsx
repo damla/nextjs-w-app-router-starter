@@ -6,7 +6,10 @@ import { useSession } from 'next-auth/react';
 import { redirect } from 'next/navigation';
 
 const getUsers = cache(() =>
-  fetch('http://localhost:3000/api/users').then(res => res.json())
+  // TODO: refactor
+  fetch('https://nextjs-w-app-directory-starter.vercel.app/api/users').then(
+    res => res.json()
+  )
 );
 
 export default function ListUsers() {
