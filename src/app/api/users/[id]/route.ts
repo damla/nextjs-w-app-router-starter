@@ -1,5 +1,6 @@
 import { prisma } from '@/lib/prisma';
 import { NextResponse } from 'next/server';
+import { corsHeaders } from '../../helpers';
 
 export async function GET(
   request: Request,
@@ -13,10 +14,15 @@ export async function GET(
   });
 
   if (!user) {
-    return new NextResponse('No user with ID found', { status: 404 });
+    return new NextResponse('No user with ID found', {
+      status: 404,
+      headers: corsHeaders
+    });
   }
 
-  return NextResponse.json(user);
+  return NextResponse.json(user, {
+    headers: corsHeaders
+  });
 }
 
 export async function PATCH(

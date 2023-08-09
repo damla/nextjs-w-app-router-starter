@@ -1,9 +1,13 @@
 import { prisma } from '@/lib/prisma';
 import { NextResponse } from 'next/server';
+import { corsHeaders } from '../helpers';
 
 export async function GET(request: Request) {
   const users = await prisma.user.findMany();
-  return NextResponse.json(users);
+
+  return NextResponse.json(users, {
+    headers: corsHeaders
+  });
 }
 
 export async function POST(request: Request) {
