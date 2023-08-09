@@ -7,13 +7,16 @@
     "build": "prisma generate && next build",
     "start": "next start",
     "lint": "next lint",
-    "prepare": "husky install"
+    "prepare": "husky install",
+    "migrate:postgres": "dotenv -e .env.development.local -- pnpm prisma migrate deploy",
+    "reset:postgres": "dotenv -e .env.development.local -- pnpm prisma migrate reset",
+    "pull:postgres": "dotenv -e .env.development.local -- pnpm prisma db pull"
   },
   "prisma": {
     "seed": "ts-node --compiler-options {\"module\":\"CommonJS\"} prisma/seed.ts"
   },
   "dependencies": {
-    "@prisma/client": "^5.0.0",
+    "@prisma/client": "^5.1.1",
     "@types/node": "20.3.3",
     "@types/react": "18.2.14",
     "@types/react-dom": "18.2.6",
@@ -36,7 +39,7 @@
     "husky": "^8.0.0",
     "lint-staged": "^13.2.3",
     "prettier": "^2.8.8",
-    "prisma": "^5.0.0",
+    "prisma": "^5.1.1",
     "ts-node": "^10.9.1"
   }
 }
