@@ -2,6 +2,24 @@ import { prisma } from '@/lib/prisma';
 import { NextResponse } from 'next/server';
 import { corsHeaders } from '../../helpers';
 
+/**
+ * @swagger
+ * /api/users/{id}:
+ *   get:
+ *     description: Returns the user
+ *     parameters:
+ *       - in: path
+ *         name: id
+ *         required: true
+ *         description: UUID of the user to retrieve.
+ *         schema:
+ *           type: string
+ *     responses:
+ *       200:
+ *         description: Success
+ *       404:
+ *         description: No user with ID found
+ */
 export async function GET(
   request: Request,
   { params }: { params: { id: string } }
@@ -25,6 +43,24 @@ export async function GET(
   });
 }
 
+/**
+ * @swagger
+ * /api/users/{id}:
+ *   patch:
+ *     description: Update the user data
+ *     parameters:
+ *       - in: path
+ *         name: id
+ *         required: true
+ *         description: UUID of the user to retrieve.
+ *         schema:
+ *           type: string
+ *     responses:
+ *       200:
+ *         description: Success
+ *       404:
+ *         description: No user with ID found
+ */
 export async function PATCH(
   request: Request,
   { params }: { params: { id: string } }
@@ -44,6 +80,26 @@ export async function PATCH(
   return NextResponse.json(updated_user);
 }
 
+/**
+ * @swagger
+ * /api/users/{id}:
+ *   delete:
+ *     description: Delete the user data
+ *     parameters:
+ *       - in: path
+ *         name: id
+ *         required: true
+ *         description: UUID of the user to retrieve.
+ *         schema:
+ *           type: string
+ *     responses:
+ *       204:
+ *         description: Success
+ *       404:
+ *         description: No user with ID found
+ *       500:
+ *        description: Internal Server Error
+ */
 export async function DELETE(
   request: Request,
   { params }: { params: { id: string } }
