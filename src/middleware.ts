@@ -18,4 +18,4 @@ export default withAuth(
   }
 );
 
-export const config = { matcher: ['/api/users/:path*', Routes.DASHBOARD] };
+export const config = { matcher: ['/api/users/:path*', '/dashboard'] };
