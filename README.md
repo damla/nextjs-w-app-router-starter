@@ -1,8 +1,8 @@
 # NextJS Application Using App Router
 
-## ⚠️ In Progress!
+## ⚠️ In Progress
 
-- If you want to follow up on the updates and contribute, please check the [project board.](https://github.com/users/damla/projects/7/views/2)
+- If you want to follow up on the updates and contribute, please check the [project board.](https://github.com/users/damla/projects/7/views/4)
 
 ## Installation Settings
 
