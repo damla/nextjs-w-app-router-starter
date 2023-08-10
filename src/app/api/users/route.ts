@@ -2,6 +2,15 @@ import { prisma } from '@/lib/prisma';
 import { NextResponse } from 'next/server';
 import { corsHeaders } from '../helpers';
 
+/**
+ * @swagger
+ * /api/users:
+ *   get:
+ *     description: Returns the user list
+ *     responses:
+ *       200:
+ *         description: Success
+ */
 export async function GET(request: Request) {
   const users = await prisma.user.findMany();
 
@@ -10,6 +19,19 @@ export async function GET(request: Request) {
   });
 }
 
+/**
+ * @swagger
+ * /api/users:
+ *   post:
+ *     description: Creates a new user
+ *     responses:
+ *       201:
+ *         description: Success
+ *       409:
+ *         description: User with email already exists
+ *       500:
+ *         description: Internal server error
+ */
 export async function POST(request: Request) {
   try {
     const json = await request.json();
