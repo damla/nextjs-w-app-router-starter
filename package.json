@@ -10,6 +10,7 @@
     "prepare": "husky install",
     "migrate:postgres": "dotenv -e .env.development.local -- pnpm prisma migrate deploy",
     "reset:postgres": "dotenv -e .env.development.local -- pnpm prisma migrate reset",
+    "seed:postgres": "dotenv -e .env.development.local -- pnpm prisma db seed",
     "pull:postgres": "dotenv -e .env.development.local -- pnpm prisma db pull"
   },
   "prisma": {
