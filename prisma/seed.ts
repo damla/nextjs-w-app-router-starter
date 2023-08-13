@@ -13,7 +13,7 @@ async function main() {
       name: 'Damla',
       email: 'damla@user.com',
       password: hashedPassword,
-      role: 'user'
+      address: 'Istanbul Turkey'
     }
   });
 }
