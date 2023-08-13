@@ -1,14 +1,26 @@
-import ListUsers from '@/app/components/list-users';
+'use client';
+
+import { signOut, useSession } from 'next-auth/react';
+import Link from 'next/link';
+import { ROLES } from './types/types';
 
 export default function Home() {
+  const { data: session } = useSession();
+
   return (
     <main className="flex flex-col min-h-screen items-start p-24">
-      <div className="flex-col font-mono text-sm lg:flex">
-        <p className="fixed left-0 top-0 flex w-full justify-center border-b border-gray-300 bg-gradient-to-b from-zinc-200 pb-6 pt-8 backdrop-blur-2xl lg:static lg:w-auto lg:rounded-xl lg:border lg:bg-gray-200 lg:p-4 dark:text-black">
-          <code className="font-mono font-bold">User List</code>
-        </p>
-      </div>
-      <ListUsers />
+      {!session?.user && (
+        <>
+          <Link href="/register">Register</Link>
+          <Link href="/signin">Login</Link>
+        </>
+      )}
+      {session?.user.role === ROLES.ADMIN && (
+        <Link href="/dashboard">Dashboard</Link>
+      )}
+      {session?.user && (
+        <button onClick={() => signOut({ callbackUrl: '/' })}>Sign Out</button>
+      )}
     </main>
   );
 }

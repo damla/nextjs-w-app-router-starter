@@ -7,7 +7,7 @@ export default withAuth(
       request.nextUrl.pathname.startsWith('/dashboard') &&
       request.nextauth.token?.role !== 'admin'
     ) {
-      return NextResponse.rewrite(new URL('/api/auth/signin', request.url));
+      return NextResponse.rewrite(new URL('/unauthorized', request.url));
     }
   },
   {

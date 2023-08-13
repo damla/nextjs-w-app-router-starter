@@ -26,10 +26,7 @@ export default function ListUsers() {
           <div
             key={user.id}
             className="flex w-full justify-center items-center flex-col border-b border-gray-300 bg-gradient-to-b from-zinc-200 pb-6 pt-8 backdrop-blur-2xl lg:static lg:w-auto lg:rounded-xl lg:border lg:bg-gray-200 lg:p-4 dark:text-black"
-          >
-            <code className="font-mono font-bold">Name: {user.name}</code>
-            <code className="font-mono font-bold">Role: {user.role}</code>
-          </div>
+          ></div>
         ))}
     </div>
   );
