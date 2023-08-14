@@ -7,3 +7,5 @@ export const isDevelopment =
 export const url = new URL(
   process.env.NEXT_PUBLIC_PROJECT_HTTP_URL ?? 'http://localhost:3000'
 );
+
+export const nextAuthSecret = process.env.NEXTAUTH_SECRET;
