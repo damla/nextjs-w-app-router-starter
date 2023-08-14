@@ -11,8 +11,8 @@ export default function Home() {
     <main className="flex flex-col min-h-screen items-start p-24">
       {!session?.user && (
         <>
-          <Link href="/register">Register</Link>
-          <Link href="/signin">Login</Link>
+          <Link href="/auth/signup">Register</Link>
+          <Link href="/auth/signin">Login</Link>
         </>
       )}
       {session?.user.role === ROLES.ADMIN && (
