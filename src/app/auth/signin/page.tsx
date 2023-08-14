@@ -23,6 +23,7 @@ export default function SignInPage() {
     });
 
     if (!res?.error) {
+      router.refresh();
       router.push('/');
     } else {
       setError(res.error);

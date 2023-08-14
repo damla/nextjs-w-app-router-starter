@@ -22,16 +22,22 @@ export default function SignUpPage() {
       body: JSON.stringify({ data })
     });
     if (response.ok) {
+      router.refresh();
       router.push('/');
     } else {
-      setError('Error creating user');
-      setData({
-        name: '',
-        email: '',
-        address: '',
-        password: ''
-      });
+      const error = await response.text();
+      setError(error);
+      resetForm();
     }
+  };
+
+  const resetForm = () => {
+    setData({
+      name: '',
+      email: '',
+      address: '',
+      password: ''
+    });
   };
   // https://tailwindui.com/components/application-ui/forms/sign-in-forms
   return (
