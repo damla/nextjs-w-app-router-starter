@@ -27,7 +27,12 @@ export default function SignInPage() {
       router.push('/');
     } else {
       setError(res.error);
+      resetForm();
     }
+  };
+
+  const resetForm = () => {
+    setData({ email: '', password: '' });
   };
 
   // https://tailwindui.com/components/application-ui/forms/sign-in-forms
