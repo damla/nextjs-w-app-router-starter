@@ -10,15 +10,19 @@ export const getApiDocs = async () => {
         version: '1.0'
       },
       components: {
+        // Swagger UI does not support cookie authentication out of the box therefore,
+        // authentication need to be done on the UI manually.
+        // https://swagger.io/docs/specification/authentication/cookie-authentication/
+        // https://github.com/swagger-api/swagger-js/issues/1163
         securitySchemes: {
-          BearerAuth: {
-            type: 'http',
-            scheme: 'bearer',
-            bearerFormat: 'JWT'
+          cookieAuth: {
+            type: 'apiKey',
+            name: 'next-auth.session-token',
+            in: 'cookie'
           }
         }
       },
-      security: []
+      security: [{ cookieAuth: [] }]
     }
   });
   return spec;
