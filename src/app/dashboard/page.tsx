@@ -5,7 +5,7 @@ import { signOut } from 'next-auth/react';
 import { useState } from 'react';
 
 export default function Dashboard() {
-  const [newName, setNewName] = useState('');
+  const [newName, setNewName] = useState<string>('');
   const { data: session, status, update } = useSession();
 
   return (

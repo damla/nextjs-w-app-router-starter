@@ -1,65 +1,61 @@
 import { prisma } from '@/lib/prisma';
 import { NextResponse } from 'next/server';
-import { corsHeaders } from '../../helpers';
 
 /**
  * @swagger
- * /api/users/{id}:
+ * /api/posts/{id}:
  *   get:
- *     description: Returns the user
+ *     description: Returns the post data with the specific id
  *     parameters:
  *       - in: path
  *         name: id
  *         required: true
- *         description: UUID of the user to retrieve.
+ *         description: UUID of the post to retrieve.
  *         schema:
  *           type: string
  *     responses:
  *       200:
  *         description: Success
  *       404:
- *         description: No user with ID found
+ *         description: No post with the ID found
  */
 export async function GET(
   request: Request,
   { params }: { params: { id: string } }
 ) {
   const id = params.id;
-  const user = await prisma.user.findUnique({
+  const post = await prisma.post.findUnique({
     where: {
       id
     }
   });
 
-  if (!user) {
-    return new NextResponse('No user with ID found', {
-      status: 404,
-      headers: corsHeaders
+  if (!post) {
+    return new NextResponse('No post with the ID found', {
+      status: 404
     });
   }
 
-  return NextResponse.json(user, {
-    headers: corsHeaders
-  });
+  return NextResponse.json(post);
 }
 
 /**
  * @swagger
- * /api/users/{id}:
+ * /api/posts/{id}:
  *   patch:
- *     description: Update the user data
+ *     description: Update the post data
  *     parameters:
  *       - in: path
  *         name: id
  *         required: true
- *         description: UUID of the user to retrieve.
+ *         description: UUID of the post to retrieve.
  *         schema:
  *           type: string
  *     responses:
  *       200:
  *         description: Success
  *       404:
- *         description: No user with ID found
+ *         description: No post with the ID found
  */
 export async function PATCH(
   request: Request,
@@ -68,35 +64,35 @@ export async function PATCH(
   const id = params.id;
   let json = await request.json();
 
-  const updated_user = await prisma.user.update({
+  const updated_post = await prisma.post.update({
     where: { id },
     data: json
   });
 
-  if (!updated_user) {
-    return new NextResponse('No user with ID found', { status: 404 });
+  if (!updated_post) {
+    return new NextResponse('No post with the ID found', { status: 404 });
   }
 
-  return NextResponse.json(updated_user);
+  return NextResponse.json(updated_post);
 }
 
 /**
  * @swagger
- * /api/users/{id}:
+ * /api/posts/{id}:
  *   delete:
- *     description: Delete the user data
+ *     description: Delete the post data
  *     parameters:
  *       - in: path
  *         name: id
  *         required: true
- *         description: UUID of the user to retrieve.
+ *         description: UUID of the post to retrieve.
  *         schema:
  *           type: string
  *     responses:
  *       204:
  *         description: Success
  *       404:
- *         description: No user with ID found
+ *         description: No post with ID found
  *       500:
  *        description: Internal Server Error
  */
@@ -106,14 +102,14 @@ export async function DELETE(
 ) {
   try {
     const id = params.id;
-    await prisma.user.delete({
+    await prisma.post.delete({
       where: { id }
     });
 
     return new NextResponse(null, { status: 204 });
   } catch (error: any) {
     if (error.code === 'P2025') {
-      return new NextResponse('No user with ID found', { status: 404 });
+      return new NextResponse('No post with the ID found', { status: 404 });
     }
 
     return new NextResponse(error.message, { status: 500 });

@@ -3,9 +3,16 @@
 import { useState } from 'react';
 import { useRouter } from 'next/navigation';
 
+interface UserData {
+  name: string;
+  email: string;
+  address: string;
+  password: string;
+}
+
 export default function SignUpPage() {
   const router = useRouter();
-  const [data, setData] = useState({
+  const [data, setData] = useState<UserData>({
     name: '',
     email: '',
     address: '',
