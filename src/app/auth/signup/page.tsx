@@ -2,6 +2,7 @@
 
 import { useState } from 'react';
 import { useRouter } from 'next/navigation';
+import Button from '@/app/components/general/button';
 
 interface UserData {
   name: string;
@@ -12,13 +13,14 @@ interface UserData {
 
 export default function SignUpPage() {
   const router = useRouter();
+
+  const [error, setError] = useState<string>();
   const [data, setData] = useState<UserData>({
     name: '',
     email: '',
     address: '',
     password: ''
   });
-  const [error, setError] = useState<string>();
 
   const registerUser = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
@@ -153,12 +155,12 @@ export default function SignUpPage() {
             </div>
 
             <div>
-              <button
+              <Button
                 type="submit"
                 className="flex w-full justify-center rounded-md bg-indigo-600 px-3 py-1.5 text-sm font-semibold leading-6 text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
               >
                 Sign Up
-              </button>
+              </Button>
             </div>
           </form>
         </div>

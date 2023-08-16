@@ -46,7 +46,7 @@ export async function POST(request: NextRequest) {
       const json = await request.json();
 
       const post = await prisma.post.create({
-        data: json
+        data: { authorId: token.id, ...json }
       });
 
       return new NextResponse(JSON.stringify(post), {
