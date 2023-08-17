@@ -1,8 +1,19 @@
-import { prisma } from '@/lib/prisma';
+import { url } from '@/app/utils/env';
 import { Post } from '@prisma/client';
 
+async function getPosts(): Promise<Post[]> {
+  const res = await fetch(`${url}/api/posts`);
+
+  if (!res.ok) {
+    // TODO: refactor this error part
+    // This will activate the closest `error.js` Error Boundary
+    throw new Error('Failed to fetch data');
+  }
+  return res.json();
+}
+
 export default async function ListPosts() {
-  const posts: Post[] = await prisma.post.findMany();
+  const posts = await getPosts();
 
   if (posts.length === 0) return <p>No Posts found.</p>;
 
