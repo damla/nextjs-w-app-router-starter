@@ -2,33 +2,52 @@
 
 import { useState } from 'react';
 import { useRouter } from 'next/navigation';
-import { signIn } from 'next-auth/react';
+import Button from '@/app/components/general/button';
 
-interface CredentialData {
+interface UserData {
+  name: string;
   email: string;
+  address: string;
   password: string;
 }
 
-export default function SignInPage() {
+export default function SignUpPage() {
   const router = useRouter();
-  const [data, setData] = useState<CredentialData>({ email: '', password: '' });
-  const [error, setError] = useState<string>();
 
-  const loginUser = async (e: React.FormEvent<HTMLFormElement>) => {
+  const [error, setError] = useState<string>();
+  const [data, setData] = useState<UserData>({
+    name: '',
+    email: '',
+    address: '',
+    password: ''
+  });
+
+  const registerUser = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
 
-    const res = await signIn('credentials', {
-      ...data,
-      redirect: false
+    const response = await fetch('/api/register', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ data })
     });
-
-    if (!res?.error) {
+    if (response.ok) {
+      router.refresh();
       router.push('/');
     } else {
-      setError(res.error);
+      const error = await response.text();
+      setError(error);
+      resetForm();
     }
   };
 
+  const resetForm = () => {
+    setData({
+      name: '',
+      email: '',
+      address: '',
+      password: ''
+    });
+  };
   // https://tailwindui.com/components/application-ui/forms/sign-in-forms
   return (
     <>
@@ -41,7 +60,29 @@ export default function SignInPage() {
         </div>
 
         <div className="mt-10 sm:mx-auto sm:w-full sm:max-w-sm">
-          <form className="space-y-6" onSubmit={loginUser}>
+          <form className="space-y-6" onSubmit={registerUser}>
+            <div>
+              <label
+                htmlFor="name"
+                className="block text-sm font-medium leading-6 text-gray-900"
+              >
+                Name
+              </label>
+              <div className="mt-2">
+                <input
+                  id="name"
+                  name="name"
+                  type="text"
+                  required
+                  value={data.name}
+                  onChange={e => {
+                    setData({ ...data, name: e.target.value });
+                  }}
+                  className="px-4 block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
+                />
+              </div>
+            </div>
+
             <div>
               <label
                 htmlFor="email"
@@ -59,6 +100,29 @@ export default function SignInPage() {
                   value={data.email}
                   onChange={e => {
                     setData({ ...data, email: e.target.value });
+                  }}
+                  className="px-4 block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
+                />
+              </div>
+            </div>
+
+            <div>
+              <label
+                htmlFor="address"
+                className="block text-sm font-medium leading-6 text-gray-900"
+              >
+                Address
+              </label>
+              <div className="mt-2">
+                <input
+                  id="address"
+                  name="address"
+                  type="address"
+                  autoComplete="address"
+                  required
+                  value={data.address}
+                  onChange={e => {
+                    setData({ ...data, address: e.target.value });
                   }}
                   className="px-4 block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
                 />
@@ -91,12 +155,12 @@ export default function SignInPage() {
             </div>
 
             <div>
-              <button
+              <Button
                 type="submit"
                 className="flex w-full justify-center rounded-md bg-indigo-600 px-3 py-1.5 text-sm font-semibold leading-6 text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
               >
-                Login
-              </button>
+                Sign Up
+              </Button>
             </div>
           </form>
         </div>
