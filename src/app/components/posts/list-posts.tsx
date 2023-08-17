@@ -1,10 +1,23 @@
-import { prisma } from '@/lib/prisma';
+import { url } from '@/app/utils/env';
 import { Post } from '@prisma/client';
+async function getPosts() {
+  try {
+    const res = await fetch(`${url}/api/posts`);
+
+    if (!res.ok) {
+      throw new Error('Failed to fetch posts');
+    }
+
+    return res.json();
+  } catch (error) {
+    throw new Error(`Failed to fetch: ${error}`);
+  }
+}
 
 export default async function ListPosts() {
-  const posts: Post[] = await prisma.post.findMany();
+  const posts: Post[] = await getPosts();
 
-  if (posts.length === 0) return <p>No Posts found.</p>;
+  if (posts.length === 0 || !posts) return <p>No Posts found.</p>;
 
   return (
     <div className="pt-10 flex gap-20">
