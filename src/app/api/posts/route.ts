@@ -1,7 +1,7 @@
 import { prisma } from '@/lib/prisma';
 import { NextRequest, NextResponse } from 'next/server';
 import { getToken } from 'next-auth/jwt';
-import { ROLES } from '@/app/types/types';
+import { Role } from '@prisma/client';
 
 /**
  * @swagger
@@ -44,7 +44,7 @@ export async function POST(request: NextRequest) {
       secret: process.env.NEXTAUTH_SECRET
     });
 
-    if (token?.role === ROLES.ADMIN) {
+    if (token?.role === Role.ADMIN) {
       const json = await request.json();
 
       const post = await prisma.post.create({

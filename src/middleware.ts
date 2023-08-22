@@ -1,12 +1,12 @@
+import { Role } from '@prisma/client';
 import { withAuth, NextRequestWithAuth } from 'next-auth/middleware';
 import { NextResponse } from 'next/server';
-import { ROLES } from './app/types/types';
 
 export default withAuth(
   function middleware(request: NextRequestWithAuth) {
     if (
       request.nextUrl.pathname.startsWith('/dashboard') &&
-      request.nextauth.token?.role !== ROLES.ADMIN
+      request.nextauth.token?.role !== Role.ADMIN
     ) {
       return NextResponse.rewrite(new URL('/unauthorized', request.url));
     }

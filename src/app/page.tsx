@@ -1,11 +1,11 @@
 import { signOut } from 'next-auth/react';
 import Link from 'next/link';
-import { ROLES } from './types/types';
 import { getServerSession } from 'next-auth';
 import { authOptions } from '@/app/utils/auth-options';
 import SignOutButton from '@/app/components/authentication/sign-out-button';
 import ListPosts from '@/app/components/posts/list-posts';
 import { Suspense } from 'react';
+import { Role } from '@prisma/client';
 
 export default async function Home() {
   const session = await getServerSession(authOptions);
@@ -18,7 +18,7 @@ export default async function Home() {
           <Link href="/auth/signin">Login</Link>
         </>
       )}
-      {session?.user.role === ROLES.ADMIN && (
+      {session?.user.role === Role.ADMIN && (
         <Link href="/dashboard">Dashboard</Link>
       )}
       {session?.user && <SignOutButton />}
