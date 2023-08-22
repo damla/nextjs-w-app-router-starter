@@ -2,7 +2,7 @@
 
 import { useState } from 'react';
 import { useRouter } from 'next/navigation';
-import Button from '@/app/components/general/button';
+import Button from '@/components/general/button';
 
 interface UserData {
   name: string;
