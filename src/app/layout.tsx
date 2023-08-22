@@ -1,4 +1,5 @@
-import AuthProvider from './context/auth-provider';
+import clsx from 'clsx';
+import Providers from './context/providers';
 import './globals.css';
 import { Inter } from 'next/font/google';
 
@@ -15,9 +16,11 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <html lang="en">
-      <body className={inter.className}>
-        <AuthProvider>{children}</AuthProvider>
+    <html lang="en" suppressHydrationWarning>
+      <body className={clsx('bg-background', inter.className)}>
+        <Providers themeProps={{ attribute: 'class', defaultTheme: 'dark' }}>
+          {children}
+        </Providers>
       </body>
     </html>
   );

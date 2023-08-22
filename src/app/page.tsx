@@ -1,4 +1,3 @@
-import { signOut } from 'next-auth/react';
 import Link from 'next/link';
 import { getServerSession } from 'next-auth';
 import { authOptions } from '@/app/utils/auth-options';
@@ -6,12 +5,15 @@ import SignOutButton from '@/app/components/authentication/sign-out-button';
 import ListPosts from '@/app/components/posts/list-posts';
 import { Suspense } from 'react';
 import { Role } from '@prisma/client';
+import { Button } from '@nextui-org/button';
+import { ThemeSwitch } from './components/general/theme-switch';
 
 export default async function Home() {
   const session = await getServerSession(authOptions);
 
   return (
     <main className="flex flex-col min-h-screen items-start p-24">
+      <ThemeSwitch />
       {!session?.user && (
         <>
           <Link href="/auth/signup">Register</Link>
@@ -28,6 +30,9 @@ export default async function Home() {
           <ListPosts />
         </Suspense>
       </div>
+      <Button color="success" radius="full">
+        damla
+      </Button>
     </main>
   );
 }
