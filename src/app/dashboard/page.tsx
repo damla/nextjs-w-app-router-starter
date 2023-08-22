@@ -3,8 +3,8 @@
 import { useSession } from 'next-auth/react';
 import { useRouter } from 'next/navigation';
 import { useState } from 'react';
-import SignOutButton from '@/app/components/authentication/sign-out-button';
-import Button from '@/app/components/general/button';
+import SignOutButton from '@/components/authentication/sign-out-button';
+import Button from '@/components/general/button';
 
 interface PostData {
   title: string;

@@ -3,7 +3,7 @@
 import { useState } from 'react';
 import { useRouter } from 'next/navigation';
 import { signIn } from 'next-auth/react';
-import Button from '@/app/components/general/button';
+import Button from '@/components/general/button';
 
 interface CredentialData {
   email: string;

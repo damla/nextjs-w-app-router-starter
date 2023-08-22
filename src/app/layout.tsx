@@ -1,5 +1,5 @@
 import clsx from 'clsx';
-import Providers from './context/providers';
+import Providers from '../context/providers';
 import './globals.css';
 import { Inter } from 'next/font/google';
 

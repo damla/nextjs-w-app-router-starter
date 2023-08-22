@@ -8,7 +8,7 @@ import { useTheme } from 'next-themes';
 import { useIsSSR } from '@react-aria/ssr';
 import clsx from 'clsx';
 
-import { Icon } from '@/app/components/general/icon/icon';
+import { Icon } from '@/components/general/icon/icon';
 
 export interface Props {
   className?: string;
