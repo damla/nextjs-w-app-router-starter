@@ -6,7 +6,7 @@
 
 ## Installation Settings
 
-✔ What is your project named? … nextjs-w-app-directory-starter
+✔ What is your project named? … nextjs-w-app-router-starter
 
 ✔ Would you like to use TypeScript with this project? … No / **Yes**
 

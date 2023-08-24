@@ -30,9 +30,6 @@ export default async function Home() {
           <ListPosts />
         </Suspense>
       </div>
-      <Button color="success" radius="full">
-        damla
-      </Button>
     </main>
   );
 }
