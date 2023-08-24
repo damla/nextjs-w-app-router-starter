@@ -14,6 +14,7 @@ export default async function Home() {
   return (
     <main className="flex flex-col min-h-screen items-start p-24">
       <ThemeSwitch />
+      <Button>Button</Button>
       {!session?.user && (
         <>
           <Link href="/auth/signup">Register</Link>

@@ -1,7 +1,6 @@
 'use client';
 
 // https://github.com/nextui-org/next-app-template/blob/main/components/theme-switch.tsx
-import { FC } from 'react';
 import { VisuallyHidden } from '@react-aria/visually-hidden';
 import { SwitchProps, useSwitch } from '@nextui-org/switch';
 import { useTheme } from 'next-themes';
