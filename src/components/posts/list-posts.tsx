@@ -1,5 +1,6 @@
 import { url } from '@/utils/env';
 import { Post } from '@prisma/client';
+
 async function getPosts() {
   try {
     const res = await fetch(`${url}/api/posts`);
@@ -14,7 +15,7 @@ async function getPosts() {
   }
 }
 
-export default async function ListPosts() {
+export async function ListPosts() {
   const posts: Post[] = await getPosts();
 
   if (posts.length === 0 || !posts) return <p>No Posts found.</p>;

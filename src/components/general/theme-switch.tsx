@@ -14,7 +14,7 @@ export interface Props {
   classNames?: SwitchProps['classNames'];
 }
 
-export const ThemeSwitch = ({ className, classNames }: Props) => {
+export function ThemeSwitch({ className, classNames }: Props) {
   const { theme, setTheme } = useTheme();
   const isSSR = useIsSSR();
 
@@ -77,4 +77,4 @@ export const ThemeSwitch = ({ className, classNames }: Props) => {
       </div>
     </Component>
   );
-};
+}

@@ -9,7 +9,7 @@ interface Props {
   children: ReactNode;
 }
 
-export default function Button({
+export function Button({
   type = 'button',
   onClick,
   className,

@@ -3,8 +3,7 @@
 import { useSession } from 'next-auth/react';
 import { useRouter } from 'next/navigation';
 import { useState } from 'react';
-import SignOutButton from '@/components/authentication/sign-out-button';
-import Button from '@/components/general/button';
+import { Button } from '@/components/general/button';
 
 interface PostData {
   title: string;
@@ -51,7 +50,7 @@ export default function Dashboard() {
   };
 
   return (
-    <div className="flex min-h-screen flex-col items-center justify-between p-24">
+    <section className="flex min-h-screen flex-col items-center justify-between p-24">
       <p>Dashboard</p>
       <p>Hi {session?.user?.name}</p>
       <p>Address: {session?.user?.address}</p>
@@ -118,7 +117,6 @@ export default function Dashboard() {
           Add Post
         </Button>
       </form>
-      <SignOutButton className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded" />
-    </div>
+    </section>
   );
 }
