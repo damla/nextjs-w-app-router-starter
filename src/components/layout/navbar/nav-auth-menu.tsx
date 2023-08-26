@@ -5,7 +5,7 @@ import { Link, NavbarItem, NavbarMenuItem } from '@nextui-org/react';
 import clsx from 'clsx';
 import NextLink from 'next/link';
 import { link as linkStyles } from '@nextui-org/theme';
-import { useEffect, useState } from 'react';
+import { Fragment, useEffect, useState } from 'react';
 import { siteConfig } from '@/config/site';
 import { useSession } from 'next-auth/react';
 import { isAdmin, isUser } from '@/utils/auth';
@@ -14,9 +14,9 @@ function renderNavItems(navItems: NavItem[], keyPrefix: string) {
   return (
     <ul className="hidden lg:flex gap-4 justify-start ml-2">
       {navItems.map((item, idx) => (
-        <>
+        <Fragment key={`${keyPrefix}-${idx + 1}`}>
           {item.href && (
-            <NavbarItem key={`${keyPrefix}-${idx}`}>
+            <NavbarItem>
               <NextLink
                 className={clsx(
                   linkStyles({ color: 'foreground' }),
@@ -30,9 +30,11 @@ function renderNavItems(navItems: NavItem[], keyPrefix: string) {
             </NavbarItem>
           )}
           {item.button && (
-            <NavbarItem key={`${keyPrefix}-${idx}`}>{item.button}</NavbarItem>
+            <NavbarItem className="sm:text-base order-1">
+              {item.button}
+            </NavbarItem>
           )}
-        </>
+        </Fragment>
       ))}
     </ul>
   );
@@ -42,18 +44,18 @@ function renderMobileItems(navItems: NavItem[], keyPrefix: string) {
   return (
     <div className="mx-4 mt-2 flex flex-col gap-2">
       {navItems.map((item, idx) => (
-        <>
+        <Fragment key={`mobile-${keyPrefix}-menu-item-${idx}`}>
           {item.href && (
-            <NavbarMenuItem key={`mobile-menu-item-${idx}`}>
+            <NavbarMenuItem>
               <Link color="foreground" href={item.href} size="lg">
                 {item.label}
               </Link>
             </NavbarMenuItem>
           )}
           {item.button && (
-            <NavbarItem key={`${keyPrefix}-${idx}`}>{item.button}</NavbarItem>
+            <NavbarItem className="text-lg order-1">{item.button}</NavbarItem>
           )}
-        </>
+        </Fragment>
       ))}
     </div>
   );
@@ -82,5 +84,6 @@ export function NavbarAuthMenu({ mobile }: Props) {
 
   if (mobile)
     return renderMobileItems(navItems, `mobile-${userType}-menu-item`);
+
   return renderNavItems(navItems, `${userType}-menu-item`);
 }

@@ -16,17 +16,20 @@ import { NavbarAuthMenu } from './nav-auth-menu';
 export default async function Navbar() {
   return (
     <NextUINavbar maxWidth="xl" position="sticky">
-      <NavbarContent className="basis-1/5 sm:basis-full" justify="start">
+      <NavbarContent className="basis-1/5 sm:basis-1/4" justify="start">
         <NavbarBrand as="li" className="gap-3 max-w-fit">
           <NextLink className="flex justify-start items-center gap-1" href="/">
             <p className="font-bold text-inherit">Next.JS w/App Router</p>
           </NextLink>
         </NavbarBrand>
+      </NavbarContent>
+
+      <NavbarContent className="basis-1/5 sm:basis-1/2" justify="center">
         <NavbarAuthMenu />
       </NavbarContent>
 
       <NavbarContent
-        className="hidden sm:flex basis-1/5 sm:basis-full"
+        className="hidden sm:flex basis-1/5 sm:basis-1/4"
         justify="end"
       >
         <NavbarItem className="hidden sm:flex gap-2">
