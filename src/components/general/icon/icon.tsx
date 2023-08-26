@@ -9,7 +9,7 @@ interface Props {
   className?: string;
 }
 
-export const Icon = ({ name, size, className }: Props) => {
+export function Icon({ name, size, className }: Props) {
   const Component = iconNameMap[name];
 
   return (
@@ -20,4 +20,4 @@ export const Icon = ({ name, size, className }: Props) => {
       <Component />
     </span>
   );
-};
+}
