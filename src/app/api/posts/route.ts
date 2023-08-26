@@ -29,6 +29,12 @@ export async function GET(request: Request) {
  * /api/posts:
  *   post:
  *     description: Creates a new post
+ *     requestBody:
+ *       required: true
+ *       content:
+ *         application/json:
+ *           schema:
+ *             $ref: '#/components/schemas/initPostApi'
  *     responses:
  *       201:
  *         description: Success
@@ -46,7 +52,6 @@ export async function POST(request: NextRequest) {
 
     if (token?.role === Role.ADMIN) {
       const json = await request.json();
-
       const post = await prisma.post.create({
         data: { authorId: token.id, ...json }
       });

@@ -23,6 +23,7 @@ export default function Dashboard() {
     content: '',
     isPublished: false
   });
+
   const addPost = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
 
