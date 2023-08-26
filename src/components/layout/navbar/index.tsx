@@ -31,7 +31,7 @@ export default async function Navbar() {
       >
         <NavbarItem className="hidden sm:flex gap-2">
           <Link isExternal href={siteConfig.links.x} aria-label="X">
-            <Icon name="XIcon" size={22} className="text-default-500" />
+            <Icon name="XIcon" size={16} className="text-default-500" />
           </Link>
           <Link isExternal href={siteConfig.links.github} aria-label="Github">
             <Icon name="GithubIcon" size={22} className="text-default-500" />
