@@ -1,17 +1,16 @@
+import { NavItem, SiteConfig } from '@/types';
 import { Links, Routes } from './routes';
 import { SignOutButton } from '@/components/authentication/sign-out-button';
 
-interface AuthorizedAdmin {
-  label: string;
-  href: string;
-  button?: JSX.Element;
-}
-
-const publicNavItems = [
+const baseNavItems: NavItem[] = [
   {
     label: 'Home',
     href: Routes.HOME
-  },
+  }
+];
+
+const publicNavItems: NavItem[] = [
+  ...baseNavItems,
   {
     label: 'Login',
     href: Routes.SIGN_IN
@@ -22,34 +21,28 @@ const publicNavItems = [
   }
 ];
 
-const authorizedUserNavItems = [
-  {
-    label: 'Home',
-    href: Routes.HOME
-  },
+const authorizedUserNavItems: NavItem[] = [
+  ...baseNavItems,
   {
     label: 'Logout',
     button: <SignOutButton />
   }
 ];
 
-const authorizedAdminNavItems = [
+const authorizedAdminNavItems: NavItem[] = [
   {
     label: 'Dashboard',
     href: Routes.DASHBOARD
   }
 ];
 
-export const siteConfig = {
+export const siteConfig: SiteConfig = {
   name: 'Next.js w/App Router Starter',
   description: 'Supercharge development with Next.js with App Router Starter',
   navItems: {
-    public: [...publicNavItems],
-    authorizedUser: [...authorizedUserNavItems],
-    authorizedAdmin: [
-      ...authorizedAdminNavItems,
-      ...authorizedUserNavItems
-    ] as AuthorizedAdmin[]
+    public: publicNavItems,
+    user: authorizedUserNavItems,
+    admin: [...authorizedUserNavItems, ...authorizedAdminNavItems]
   },
   links: {
     github: Links.GITHUB,

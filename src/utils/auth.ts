@@ -1,13 +1,14 @@
-import { getServerSession } from 'next-auth';
-import { authOptions } from './auth-options';
+import { Session } from 'next-auth';
 import { Role } from '@prisma/client';
 
-export async function isLoggedIn() {
-  const session = await getServerSession(authOptions);
-  return session && session.user;
+export function isLoggedIn(session: Session) {
+  return session;
 }
 
-export async function isAdmin() {
-  const session = await getServerSession(authOptions);
-  return session && session.user.role === Role.ADMIN;
+export function isUser(session: Session) {
+  return session.user.role === Role.USER;
+}
+
+export function isAdmin(session: Session) {
+  return session.user.role === Role.ADMIN;
 }
