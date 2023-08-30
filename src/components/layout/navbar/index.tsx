@@ -1,17 +1,18 @@
 import {
-  Navbar as NextUINavbar,
+  NavbarBrand,
   NavbarContent,
+  NavbarItem,
   NavbarMenu,
   NavbarMenuToggle,
-  NavbarBrand,
-  NavbarItem
+  Navbar as NextUINavbar
 } from '@nextui-org/navbar';
+
+import { Icon } from '@/components/general/icon/icon';
 import { Link } from '@nextui-org/link';
-import { siteConfig } from '@/config/site';
+import { NavbarAuthMenu } from './nav-auth-menu';
 import NextLink from 'next/link';
 import { ThemeSwitch } from '@/components/general/theme-switch';
-import { Icon } from '@/components/general/icon/icon';
-import { NavbarAuthMenu } from './nav-auth-menu';
+import { siteConfig } from '@/config/site';
 
 export default async function Navbar() {
   return (

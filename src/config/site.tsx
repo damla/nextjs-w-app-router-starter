@@ -1,5 +1,6 @@
-import { NavItem, SiteConfig } from '@/types';
 import { Links, Routes } from './routes';
+import { NavItem, SiteConfig } from '@/types';
+
 import { SignOutButton } from '@/components/authentication/sign-out-button';
 
 const baseNavItems: NavItem[] = [

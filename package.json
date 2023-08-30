@@ -1,7 +1,6 @@
 {
   "name": "nextjs-w-app-router-starter",
   "version": "0.1.0",
-  "private": true,
   "scripts": {
     "dev": "next dev",
     "build": "prisma generate && prisma migrate deploy && next build",
@@ -24,9 +23,6 @@
     "@prisma/client": "^5.1.1",
     "@react-aria/ssr": "^3.7.1",
     "@react-aria/visually-hidden": "^3.8.3",
-    "@types/node": "20.5.4",
-    "@types/react": "18.2.21",
-    "@types/react-dom": "18.2.7",
     "autoprefixer": "10.4.15",
     "bcrypt": "^5.1.0",
     "clsx": "^2.0.0",
@@ -47,6 +43,9 @@
     "typescript": "5.2.2"
   },
   "devDependencies": {
+    "@types/node": "20.5.4",
+    "@types/react": "18.2.21",
+    "@types/react-dom": "18.2.7",
     "@types/bcrypt": "^5.0.0",
     "@types/swagger-ui-react": "^4.18.0",
     "eslint-config-prettier": "^8.8.0",

@@ -2,8 +2,6 @@
 
 import { Button } from '@nextui-org/react';
 
-// Error components must be Client Components
-
 export default function Error({
   error,
   reset

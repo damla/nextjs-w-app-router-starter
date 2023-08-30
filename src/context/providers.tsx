@@ -1,12 +1,13 @@
 'use client';
 
-import { NextUIProvider } from '@nextui-org/react';
 import { ThemeProvider as NextThemesProvider } from 'next-themes';
-import { ThemeProviderProps } from 'next-themes/dist/types';
+import { NextUIProvider } from '@nextui-org/react';
+import { ReactNode } from 'react';
 import { SessionProvider } from 'next-auth/react';
+import { ThemeProviderProps } from 'next-themes/dist/types';
 
 interface Props {
-  children: React.ReactNode;
+  children: ReactNode;
   themeProps?: ThemeProviderProps;
 }
 

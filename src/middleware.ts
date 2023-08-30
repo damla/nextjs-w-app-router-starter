@@ -1,6 +1,7 @@
-import { Role } from '@prisma/client';
-import { withAuth, NextRequestWithAuth } from 'next-auth/middleware';
+import { NextRequestWithAuth, withAuth } from 'next-auth/middleware';
+
 import { NextResponse } from 'next/server';
+import { Role } from '@prisma/client';
 
 export default withAuth(
   function middleware(request: NextRequestWithAuth) {

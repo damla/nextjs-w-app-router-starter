@@ -1,7 +1,7 @@
 export const Routes = {
   // AUTH
-  SIGN_IN: '/auth/signin',
-  SIGN_UP: '/auth/signup',
+  SIGN_IN: '/auth/sign-in',
+  SIGN_UP: '/auth/sign-up',
 
   // PUBLIC
   HOME: '/',

@@ -1,5 +1,5 @@
-import { Session } from 'next-auth';
 import { Role } from '@prisma/client';
+import { Session } from 'next-auth';
 
 export function isLoggedIn(session: Session) {
   return session;

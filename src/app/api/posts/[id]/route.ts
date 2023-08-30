@@ -1,7 +1,8 @@
-import { prisma } from '@/lib/prisma';
+import { NextRequest, NextResponse } from 'next/server';
+
 import { Role } from '@prisma/client';
 import { getToken } from 'next-auth/jwt';
-import { NextRequest, NextResponse } from 'next/server';
+import { prisma } from '@/lib/prisma';
 
 /**
  * @swagger

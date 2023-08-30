@@ -1,87 +1,52 @@
 'use client';
 
-import { useState } from 'react';
-import { useRouter } from 'next/navigation';
 import { Button } from '@/components/general/button';
+import { signIn } from 'next-auth/react';
+import { useRouter } from 'next/navigation';
+import { useState } from 'react';
 
-interface UserData {
-  name: string;
+interface CredentialData {
   email: string;
-  address: string;
   password: string;
 }
 
-export default function SignUpPage() {
+export default function SignInPage() {
   const router = useRouter();
-
+  const [data, setData] = useState<CredentialData>({ email: '', password: '' });
   const [error, setError] = useState<string>();
-  const [data, setData] = useState<UserData>({
-    name: '',
-    email: '',
-    address: '',
-    password: ''
-  });
 
-  const registerUser = async (e: React.FormEvent<HTMLFormElement>) => {
+  const loginUser = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
 
-    const response = await fetch('/api/register', {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ data })
+    const response = await signIn('credentials', {
+      ...data,
+      redirect: false
     });
-    if (response.ok) {
+    if (!response?.error) {
       router.refresh();
       router.push('/');
     } else {
-      const error = await response.text();
-      setError(error);
+      setError(response.error);
       resetForm();
     }
   };
 
   const resetForm = () => {
-    setData({
-      name: '',
-      email: '',
-      address: '',
-      password: ''
-    });
+    setData({ email: '', password: '' });
   };
+
   // https://tailwindui.com/components/application-ui/forms/sign-in-forms
   return (
     <section className="flex min-h-full flex-1 flex-col justify-center px-6 py-12 lg:px-8">
       {error && <p className="text-red-600">{error}</p>}
       <div className="sm:mx-auto sm:w-full sm:max-w-sm">
         <h2 className="mt-10 text-center text-2xl font-bold leading-9 tracking-tight text-gray-900">
-          Register
+          Sign in to your account
         </h2>
       </div>
 
       <div className="mt-10 sm:mx-auto sm:w-full sm:max-w-sm">
-        <form className="space-y-6" onSubmit={registerUser}>
-          <div>
-            <label
-              htmlFor="name"
-              className="block text-sm font-medium leading-6 text-gray-900"
-            >
-              Name
-            </label>
-            <div className="mt-2">
-              <input
-                id="name"
-                name="name"
-                type="text"
-                required
-                value={data.name}
-                onChange={e => {
-                  setData({ ...data, name: e.target.value });
-                }}
-                className="px-4 block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
-              />
-            </div>
-          </div>
-
+        <form className="space-y-6" onSubmit={loginUser}>
           <div>
             <label
               htmlFor="email"
@@ -99,29 +64,6 @@ export default function SignUpPage() {
                 value={data.email}
                 onChange={e => {
                   setData({ ...data, email: e.target.value });
-                }}
-                className="px-4 block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
-              />
-            </div>
-          </div>
-
-          <div>
-            <label
-              htmlFor="address"
-              className="block text-sm font-medium leading-6 text-gray-900"
-            >
-              Address
-            </label>
-            <div className="mt-2">
-              <input
-                id="address"
-                name="address"
-                type="address"
-                autoComplete="address"
-                required
-                value={data.address}
-                onChange={e => {
-                  setData({ ...data, address: e.target.value });
                 }}
                 className="px-4 block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
               />
@@ -158,7 +100,7 @@ export default function SignUpPage() {
               type="submit"
               className="flex w-full justify-center rounded-md bg-indigo-600 px-3 py-1.5 text-sm font-semibold leading-6 text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
             >
-              Sign Up
+              Login
             </Button>
           </div>
         </form>

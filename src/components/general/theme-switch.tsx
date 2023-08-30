@@ -1,13 +1,13 @@
 'use client';
 
 // https://github.com/nextui-org/next-app-template/blob/main/components/theme-switch.tsx
-import { VisuallyHidden } from '@react-aria/visually-hidden';
 import { SwitchProps, useSwitch } from '@nextui-org/switch';
-import { useTheme } from 'next-themes';
-import { useIsSSR } from '@react-aria/ssr';
-import clsx from 'clsx';
 
 import { Icon } from '@/components/general/icon/icon';
+import { VisuallyHidden } from '@react-aria/visually-hidden';
+import clsx from 'clsx';
+import { useIsSSR } from '@react-aria/ssr';
+import { useTheme } from 'next-themes';
 
 export interface Props {
   className?: string;

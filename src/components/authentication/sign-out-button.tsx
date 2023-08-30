@@ -1,7 +1,7 @@
 'use client';
 
-import { signOut } from 'next-auth/react';
 import { Button } from '@/components/general/button';
+import { signOut } from 'next-auth/react';
 
 interface Props {
   className?: string;

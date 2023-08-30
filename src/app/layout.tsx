@@ -1,11 +1,12 @@
-import clsx from 'clsx';
-import Providers from '../context/providers';
-import { Inter } from 'next/font/google';
-import Navbar from '@/components/layout/navbar';
-import Footer from '@/components/layout/footer';
-import { siteConfig } from '@/config/site';
-import { Metadata } from 'next';
 import './globals.css';
+
+import Footer from '@/components/layout/footer';
+import { Inter } from 'next/font/google';
+import { Metadata } from 'next';
+import Navbar from '@/components/layout/navbar';
+import Providers from '../context/providers';
+import clsx from 'clsx';
+import { siteConfig } from '@/config/site';
 
 const inter = Inter({ subsets: ['latin'] });
 

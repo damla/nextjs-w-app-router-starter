@@ -1,14 +1,15 @@
 'use client';
 
-import { NavItem } from '@/types';
-import { Link, NavbarItem, NavbarMenuItem } from '@nextui-org/react';
-import clsx from 'clsx';
-import NextLink from 'next/link';
-import { link as linkStyles } from '@nextui-org/theme';
 import { Fragment, useEffect, useState } from 'react';
+import { Link, NavbarItem, NavbarMenuItem } from '@nextui-org/react';
+import { isAdmin, isUser } from '@/utils/auth';
+
+import { NavItem } from '@/types';
+import NextLink from 'next/link';
+import clsx from 'clsx';
+import { link as linkStyles } from '@nextui-org/theme';
 import { siteConfig } from '@/config/site';
 import { useSession } from 'next-auth/react';
-import { isAdmin, isUser } from '@/utils/auth';
 
 function renderNavItems(navItems: NavItem[], keyPrefix: string) {
   return (

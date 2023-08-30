@@ -1,5 +1,5 @@
-import { url } from '@/utils/env';
 import { Post } from '@prisma/client';
+import { url } from '@/utils/env';
 
 async function getPosts() {
   try {

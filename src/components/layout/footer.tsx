@@ -1,15 +1,16 @@
 'use client';
 
-import { Links } from '@/config/routes';
 import { Link } from '@nextui-org/react';
+import { Links } from '@/config/routes';
 
 export default function Footer() {
   return (
-    <footer className="w-full flex items-center justify-center py-3 gap-1">
-      <span className="text-default-600">Created by</span>
+    <footer className="w-full flex items-center justify-center py-10 gap-1">
+      <span className="text-default-600">&copy;{new Date().getFullYear()}</span>
       <Link href={Links.GITHUB} className="text-primary">
-        Damla Köksal
+        Damla Köksal.
       </Link>
+      <span className="text-default-600">All rights reserved.</span>
     </footer>
   );
 }
