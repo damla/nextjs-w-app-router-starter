@@ -1,61 +1,118 @@
-import {
-  NavbarBrand,
-  NavbarContent,
-  NavbarItem,
-  NavbarMenu,
-  NavbarMenuToggle,
-  Navbar as NextUINavbar
-} from '@nextui-org/navbar';
+'use client';
 
+import { Disclosure, Menu, Transition } from '@headlessui/react';
+
+import { Fragment } from 'react';
 import { Icon } from '@/components/general/icon/icon';
-import { Link } from '@nextui-org/link';
 import { NavbarAuthMenu } from './nav-auth-menu';
-import NextLink from 'next/link';
-import { ThemeSwitch } from '@/components/general/theme-switch';
-import { siteConfig } from '@/config/site';
+import ThemeSwitch from '@/components/general/theme-switch';
+import clsx from 'clsx';
 
-export default async function Navbar() {
+export default function Navbar() {
   return (
-    <NextUINavbar maxWidth="xl" position="sticky">
-      <NavbarContent className="basis-1/5 sm:basis-1/4" justify="start">
-        <NavbarBrand as="li" className="gap-3 max-w-fit">
-          <NextLink className="flex justify-start items-center gap-1" href="/">
-            <p className="font-bold text-inherit">Next.JS w/App Router</p>
-          </NextLink>
-        </NavbarBrand>
-      </NavbarContent>
+    <Disclosure as="nav" className="bg-white dark:bg-black">
+      {({ open }) => (
+        <>
+          <div className="mx-auto max-w-7xl px-2 sm:px-6 lg:px-8">
+            <div className="relative flex h-16 items-center justify-between">
+              <div className="absolute inset-y-0 left-0 flex items-center sm:hidden">
+                {/* Mobile menu button*/}
+                <Disclosure.Button className="relative inline-flex items-center justify-center rounded-md p-2 text-gray-400 hover:bg-gray-700 hover:text-white focus:outline-none focus:ring-2 focus:ring-inset focus:ring-white">
+                  <span className="absolute -inset-0.5" />
+                  <span className="sr-only">Open main menu</span>
+                  {open ? (
+                    <Icon name="XIcon" size={24} aria-hidden="true" />
+                  ) : (
+                    <Icon name="BarsIcon" size={24} aria-hidden="true" />
+                  )}
+                </Disclosure.Button>
+              </div>
+              <div className="flex flex-1 items-center justify-center sm:items-stretch sm:justify-start">
+                <div className="flex flex-shrink-0 items-center">
+                  <p className="dark:text-white hover:cursor-default">
+                    Next.JS Starter
+                  </p>
+                </div>
+                <div className="hidden sm:flex flex-1 justify-center">
+                  <NavbarAuthMenu />
+                </div>
+              </div>
+              <div className="absolute inset-y-0 right-0 flex items-center pr-2 sm:static sm:inset-auto sm:ml-6 sm:pr-0">
+                <ThemeSwitch />
+                {/* Profile dropdown */}
+                <Menu as="div" className="relative ml-3">
+                  <div>
+                    <Menu.Button className="relative flex rounded-full text-sm focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-gray-800">
+                      <span className="absolute -inset-1.5" />
+                      <span className="sr-only">Open user menu</span>
+                      <Icon
+                        name="UserIcon"
+                        size={20}
+                        className="dark:text-white text-black"
+                      />
+                    </Menu.Button>
+                  </div>
+                  <Transition
+                    as={Fragment}
+                    enter="transition ease-out duration-100"
+                    enterFrom="transform opacity-0 scale-95"
+                    enterTo="transform opacity-100 scale-100"
+                    leave="transition ease-in duration-75"
+                    leaveFrom="transform opacity-100 scale-100"
+                    leaveTo="transform opacity-0 scale-95"
+                  >
+                    <Menu.Items className="absolute right-0 z-10 mt-2 w-48 origin-top-right rounded-md bg-white py-1 shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none">
+                      <Menu.Item>
+                        {({ active }) => (
+                          <a
+                            href="#"
+                            className={clsx(
+                              active ? 'bg-gray-100' : '',
+                              'block px-4 py-2 text-sm text-gray-700'
+                            )}
+                          >
+                            Your Profile
+                          </a>
+                        )}
+                      </Menu.Item>
+                      <Menu.Item>
+                        {({ active }) => (
+                          <a
+                            href="#"
+                            className={clsx(
+                              active ? 'bg-gray-100' : '',
+                              'block px-4 py-2 text-sm text-gray-700'
+                            )}
+                          >
+                            Settings
+                          </a>
+                        )}
+                      </Menu.Item>
+                      <Menu.Item>
+                        {({ active }) => (
+                          <a
+                            href="#"
+                            className={clsx(
+                              active ? 'bg-gray-100' : '',
+                              'block px-4 py-2 text-sm text-gray-700'
+                            )}
+                          >
+                            Sign out
+                          </a>
+                        )}
+                      </Menu.Item>
+                    </Menu.Items>
+                  </Transition>
+                </Menu>
+              </div>
+            </div>
+          </div>
 
-      <NavbarContent className="basis-1/5 sm:basis-1/2" justify="center">
-        <NavbarAuthMenu />
-      </NavbarContent>
-
-      <NavbarContent
-        className="hidden sm:flex basis-1/5 sm:basis-1/4"
-        justify="end"
-      >
-        <NavbarItem className="hidden sm:flex gap-2">
-          <Link isExternal href={siteConfig.links.x} aria-label="X">
-            <Icon name="XIcon" size={16} className="text-default-500" />
-          </Link>
-          <Link isExternal href={siteConfig.links.github} aria-label="Github">
-            <Icon name="GithubIcon" size={22} className="text-default-500" />
-          </Link>
-          <ThemeSwitch />
-        </NavbarItem>
-      </NavbarContent>
-
-      <NavbarContent className="sm:hidden basis-1 pl-4" justify="end">
-        <Link isExternal href={siteConfig.links.github} aria-label="Github">
-          <Icon name="GithubIcon" size={22} className="text-default-500" />
-        </Link>
-        <ThemeSwitch />
-        {/* A component changed from uncontrolled to controlled warning happens because of the toggle */}
-        <NavbarMenuToggle />
-      </NavbarContent>
-
-      <NavbarMenu>
-        <NavbarAuthMenu mobile />
-      </NavbarMenu>
-    </NextUINavbar>
+          <Disclosure.Panel className="sm:hidden">
+            <NavbarAuthMenu mobile />
+          </Disclosure.Panel>
+        </>
+      )}
+    </Disclosure>
   );
 }

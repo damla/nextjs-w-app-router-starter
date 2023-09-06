@@ -1,17 +1,16 @@
 const XIcon = () => (
   <svg
-    widths="1em"
+    xmlns="http://www.w3.org/2000/svg"
+    viewBox="0 0 24 24"
+    fill="currentColor"
+    width="1em"
     height="1em"
-    strokeLinecap="round"
-    strokeLinejoin="round"
-    viewBox="0 0 16 16"
   >
     <path
       fillRule="evenodd"
+      d="M5.47 5.47a.75.75 0 011.06 0L12 10.94l5.47-5.47a.75.75 0 111.06 1.06L13.06 12l5.47 5.47a.75.75 0 11-1.06 1.06L12 13.06l-5.47 5.47a.75.75 0 01-1.06-1.06L10.94 12 5.47 6.53a.75.75 0 010-1.06z"
       clipRule="evenodd"
-      d="M0.5 0.5H5.75L9.48421 5.71053L14 0.5H16L10.3895 6.97368L16.5 15.5H11.25L7.51579 10.2895L3 15.5H1L6.61053 9.02632L0.5 0.5ZM12.0204 14L3.42043 2H4.97957L13.5796 14H12.0204Z"
-      fill="currentColor"
-    ></path>
+    />
   </svg>
 );
 

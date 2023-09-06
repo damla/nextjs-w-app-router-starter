@@ -1,6 +1,6 @@
 'use client';
 
-import { Link } from '@nextui-org/react';
+import Link from 'next/link';
 import { Links } from '@/config/routes';
 
 export default function Footer() {

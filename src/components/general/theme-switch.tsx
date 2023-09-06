@@ -1,80 +1,30 @@
-'use client';
+import { useEffect, useState } from 'react';
 
-// https://github.com/nextui-org/next-app-template/blob/main/components/theme-switch.tsx
-import { SwitchProps, useSwitch } from '@nextui-org/switch';
-
-import { Icon } from '@/components/general/icon/icon';
-import { VisuallyHidden } from '@react-aria/visually-hidden';
-import clsx from 'clsx';
-import { useIsSSR } from '@react-aria/ssr';
+import { Icon } from './icon/icon';
 import { useTheme } from 'next-themes';
 
-export interface Props {
-  className?: string;
-  classNames?: SwitchProps['classNames'];
-}
-
-export function ThemeSwitch({ className, classNames }: Props) {
+const ThemeSwitch = () => {
+  const [mounted, setMounted] = useState(false);
   const { theme, setTheme } = useTheme();
-  const isSSR = useIsSSR();
 
-  const onChange = () => {
-    theme === 'light' ? setTheme('dark') : setTheme('light');
-  };
+  useEffect(() => {
+    setMounted(true);
+  }, []);
 
-  const {
-    Component,
-    slots,
-    isSelected,
-    getBaseProps,
-    getInputProps,
-    getWrapperProps
-  } = useSwitch({
-    isSelected: theme === 'light' || isSSR,
-    'aria-label': `Switch to ${
-      theme === 'light' || isSSR ? 'dark' : 'light'
-    } mode`,
-    onChange
-  });
+  if (!mounted) {
+    return null;
+  }
 
   return (
-    <Component
-      {...getBaseProps({
-        className: clsx(
-          'px-px transition-opacity hover:opacity-80 cursor-pointer',
-          className,
-          classNames?.base
-        )
-      })}
+    <button
+      aria-label="Toggle Dark Mode"
+      type="button"
+      className="w-10 h-10 p-3 leading-4"
+      onClick={() => setTheme(theme === 'dark' ? 'light' : 'dark')}
     >
-      <VisuallyHidden>
-        <input {...getInputProps()} />
-      </VisuallyHidden>
-      <div
-        {...getWrapperProps()}
-        className={slots.wrapper({
-          class: clsx(
-            [
-              'w-auto h-auto',
-              'bg-transparent',
-              'rounded-lg',
-              'flex items-center justify-center',
-              'group-data-[selected=true]:bg-transparent',
-              '!text-default-500',
-              'pt-px',
-              'px-0',
-              'mx-0'
-            ],
-            classNames?.wrapper
-          )
-        })}
-      >
-        {!isSelected || isSSR ? (
-          <Icon name="SunFilledIcon" size={22} />
-        ) : (
-          <Icon name="MoonFilledIcon" size={22} />
-        )}
-      </div>
-    </Component>
+      <Icon name={theme === 'dark' ? 'SunFilledIcon' : 'MoonFilledIcon'} />
+    </button>
   );
-}
+};
+
+export default ThemeSwitch;

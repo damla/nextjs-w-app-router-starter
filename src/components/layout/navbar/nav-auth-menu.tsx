@@ -1,60 +1,55 @@
 'use client';
 
 import { Fragment, useEffect, useState } from 'react';
-import { Link, NavbarItem, NavbarMenuItem } from '@nextui-org/react';
 import { isAdmin, isUser } from '@/utils/auth';
 
+import { Disclosure } from '@headlessui/react';
 import { NavItem } from '@/types';
-import NextLink from 'next/link';
-import clsx from 'clsx';
-import { link as linkStyles } from '@nextui-org/theme';
 import { siteConfig } from '@/config/site';
 import { useSession } from 'next-auth/react';
 
 function renderNavItems(navItems: NavItem[], keyPrefix: string) {
   return (
-    <ul className="hidden lg:flex gap-4 justify-start ml-2">
+    <div className="flex space-x-4">
       {navItems.map((item, idx) => (
         <Fragment key={`${keyPrefix}-${idx + 1}`}>
           {item.href && (
-            <NavbarItem>
-              <NextLink
-                className={clsx(
-                  linkStyles({ color: 'foreground' }),
-                  'data-[active=true]:text-primary data-[active=true]:font-medium'
-                )}
-                color="foreground"
-                href={item.href}
-              >
-                {item.label}
-              </NextLink>
-            </NavbarItem>
+            <a
+              className="text-gray-300 hover:text-white px-3 py-4 text-sm font-medium"
+              href={item.href}
+            >
+              {item.label}
+            </a>
           )}
           {item.button && (
-            <NavbarItem className="sm:text-base order-1">
+            <div className="text-gray-300 hover:text-white px-3 py-4 text-sm font-medium flex items-center order-1">
               {item.button}
-            </NavbarItem>
+            </div>
           )}
         </Fragment>
       ))}
-    </ul>
+    </div>
   );
 }
 
 function renderMobileItems(navItems: NavItem[], keyPrefix: string) {
   return (
-    <div className="mx-4 mt-2 flex flex-col gap-2">
+    <div className="flex flex-col space-y-1 px-2 pb-3 pt-2">
       {navItems.map((item, idx) => (
         <Fragment key={`mobile-${keyPrefix}-menu-item-${idx}`}>
           {item.href && (
-            <NavbarMenuItem>
-              <Link color="foreground" href={item.href} size="lg">
-                {item.label}
-              </Link>
-            </NavbarMenuItem>
+            <Disclosure.Button
+              as="a"
+              href={item.href}
+              className="text-gray-300 hover:bg-gray-700 hover:text-white block rounded-md px-3 py-2 text-base font-medium"
+            >
+              {item.label}
+            </Disclosure.Button>
           )}
           {item.button && (
-            <NavbarItem className="text-lg order-1">{item.button}</NavbarItem>
+            <div className="text-gray-300 hover:bg-gray-700 hover:text-white block rounded-md px-3 py-2 text-base font-medium order-1">
+              {item.button}
+            </div>
           )}
         </Fragment>
       ))}
