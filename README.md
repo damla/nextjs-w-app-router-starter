@@ -6,7 +6,7 @@
 
 ## Installation Settings
 
-✔ What is your project named? … nextjs-w-app-directory-starter
+✔ What is your project named? … nextjs-w-app-router-starter
 
 ✔ Would you like to use TypeScript with this project? … No / **Yes**
 
@@ -34,6 +34,12 @@ pnpm dev
 yarn dev
 # or
 npm run dev
+```
+
+Run the PostgreSQL database locally on the docker container:
+
+```bash
+docker compose up
 ```
 
 Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.

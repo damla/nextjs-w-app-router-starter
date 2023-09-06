@@ -1,7 +1,8 @@
-import { prisma } from '@/lib/prisma';
 import { NextRequest, NextResponse } from 'next/server';
+
+import { Role } from '@prisma/client';
 import { getToken } from 'next-auth/jwt';
-import { ROLES } from '@/app/types/types';
+import { prisma } from '@/lib/prisma';
 
 /**
  * @swagger
@@ -29,6 +30,12 @@ export async function GET(request: Request) {
  * /api/posts:
  *   post:
  *     description: Creates a new post
+ *     requestBody:
+ *       required: true
+ *       content:
+ *         application/json:
+ *           schema:
+ *             $ref: '#/components/schemas/initPostApi'
  *     responses:
  *       201:
  *         description: Success
@@ -44,9 +51,8 @@ export async function POST(request: NextRequest) {
       secret: process.env.NEXTAUTH_SECRET
     });
 
-    if (token?.role === ROLES.ADMIN) {
+    if (token?.role === Role.ADMIN) {
       const json = await request.json();
-
       const post = await prisma.post.create({
         data: { authorId: token.id, ...json }
       });

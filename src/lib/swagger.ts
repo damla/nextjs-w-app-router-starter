@@ -1,6 +1,6 @@
 import { createSwaggerSpec } from 'next-swagger-doc';
 
-export const getApiDocs = async () => {
+export async function getApiDocs() {
   const spec = createSwaggerSpec({
     apiFolder: 'src/app/api',
     definition: {
@@ -10,6 +10,29 @@ export const getApiDocs = async () => {
         version: '1.0'
       },
       components: {
+        schemas: {
+          initPostApi: {
+            type: 'object',
+            properties: {
+              title: {
+                type: 'string',
+                description: 'The post title',
+                example: 'My post title'
+              },
+              content: {
+                type: 'string',
+                description: 'The post content',
+                example: 'My post content'
+              },
+              isPublished: {
+                type: 'boolean',
+                description: 'The post is published or not',
+                example: true
+              }
+            },
+            required: ['title', 'content', 'isPublished']
+          }
+        },
         // Swagger UI does not support cookie authentication out of the box therefore,
         // authentication need to be done on the UI manually.
         // https://swagger.io/docs/specification/authentication/cookie-authentication/
@@ -26,4 +49,4 @@ export const getApiDocs = async () => {
     }
   });
   return spec;
-};
+}

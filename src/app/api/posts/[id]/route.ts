@@ -1,7 +1,8 @@
-import { ROLES } from '@/app/types/types';
-import { prisma } from '@/lib/prisma';
-import { getToken } from 'next-auth/jwt';
 import { NextRequest, NextResponse } from 'next/server';
+
+import { Role } from '@prisma/client';
+import { getToken } from 'next-auth/jwt';
+import { prisma } from '@/lib/prisma';
 
 /**
  * @swagger
@@ -80,7 +81,7 @@ export async function PATCH(
       secret: process.env.NEXTAUTH_SECRET
     });
 
-    if (token?.role === ROLES.ADMIN) {
+    if (token?.role === Role.ADMIN) {
       const id = params.id;
       let json = await request.json();
 
@@ -133,7 +134,7 @@ export async function DELETE(
       req: request,
       secret: process.env.NEXTAUTH_SECRET
     });
-    if (token?.role === ROLES.ADMIN) {
+    if (token?.role === Role.ADMIN) {
       const id = params.id;
       await prisma.post.delete({
         where: { id }

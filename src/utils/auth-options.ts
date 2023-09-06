@@ -1,10 +1,11 @@
-import bcrypt from 'bcrypt';
-import { prisma } from '@/lib/prisma';
+import { Adapter } from 'next-auth/adapters';
+import CredentialsProvider from 'next-auth/providers/credentials';
 import type { NextAuthOptions } from 'next-auth';
 import { PrismaAdapter } from '@auth/prisma-adapter';
-import CredentialsProvider from 'next-auth/providers/credentials';
-import { Adapter } from 'next-auth/adapters';
+import { Routes } from '@/config/routes';
+import bcrypt from 'bcrypt';
 import { isDevelopment } from './env';
+import { prisma } from '@/lib/prisma';
 
 export const authOptions: NextAuthOptions = {
   adapter: PrismaAdapter(prisma) as Adapter,
@@ -87,7 +88,7 @@ export const authOptions: NextAuthOptions = {
     }
   },
   pages: {
-    signIn: '/auth/signin'
+    signIn: Routes.SIGN_IN
   },
   session: {
     strategy: 'jwt'
