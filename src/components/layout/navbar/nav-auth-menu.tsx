@@ -15,14 +15,14 @@ function renderNavItems(navItems: NavItem[], keyPrefix: string) {
         <Fragment key={`${keyPrefix}-${idx + 1}`}>
           {item.href && (
             <a
-              className="text-gray-300 hover:text-white px-3 py-4 text-sm font-medium"
+              className="text-black hover:text-gray-600 dark:text-gray-300 dark:hover:text-white px-3 py-4 text-sm font-medium"
               href={item.href}
             >
               {item.label}
             </a>
           )}
           {item.button && (
-            <div className="text-gray-300 hover:text-white px-3 py-4 text-sm font-medium flex items-center order-1">
+            <div className="text-black hover:text-gray-600 dark:text-gray-300 dark:hover:text-white px-3 py-4 text-sm font-medium flex items-center order-1">
               {item.button}
             </div>
           )}
